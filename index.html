@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>贪吃蛇</title>
+	<style>
+	*{list-style:none;padding:0;margin:0;}
+	.main{
+		width:600px;
+		height:400px;
+		background:url(./image/6551_1.jpg);
+		background-repeat:no-repeat;
+		position:absolute;
+		margin:auto;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		z-index:999;
+		display:block;
+	}
+	.str{
+		width:49px;
+		height:35px;
+		position: absolute;
+		top:7px;
+		left:8px;
+	}
+	.str3{
+		width:73px;
+		height:35px;
+		position: absolute;
+		top:278px;
+		left:394px;
+	}
+	.str4{
+		width:50px;
+		height:35px;
+		position: absolute;
+		top:49px;
+		left:8px;
+	}
+	.str5{
+		width:88px;
+		height:35px;
+		position: absolute;
+		top:278px;
+		left:474px;
+	}
+	.jindutiao{
+		width:443px;
+		height:20px;
+		border:1px solid #1FD821;
+		position: absolute;
+		top:149px;
+		left:52px;
+		display:none;
+	}
+	.jindutiao2{
+		height:20px;
+		width:0;
+		background:#1FD821;
+	}
+
+	.content{
+	opacity:0;
+	background:url(./image/dd.jpg);0px 0px;/contain;
+	animation:cu 300s linear infinite;
+		min-height:700px;
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	z-index:-2;
+
+	}
+		@keyframes cu{
+		 form {background-position:0px 0px;
+		 }
+		 to{background-position:-10000px 0px;
+		 }
+		}
+	#sence{
+		width:600px;
+		height:600px;
+		border:1px solid black;
+		margin:auto; 
+		position: absolute;
+		left:200px;
+		top:0;
+		bottom:0;
+		right:0;
+		border-right:0;
+		border-bottom:0;
+	}
+	.zhezhao{
+		width:600px;
+		height:600px;
+		opacity:0.5;
+		background:#29FA58;
+		display: none;
+		position:absolute;
+		left:477px;
+		top:50px;
+		z-index:9998;
+	}
+	.gongju{
+		background: url(./image/kuihua2.png);
+	position:absolute;
+	top:0;
+	bottom:0;
+	width:240px;
+	padding:50px;
+	}
+
+	.gongju ul{
+		margin-top:-16px;
+		padding:10px;
+		
+	}
+	.caozuo {
+		width:200px;
+		height:200px;
+		position: absolute;
+		margin:auto;
+		top:284px;
+		right:-917px;
+	}
+	.caozuo img{
+		position:absolute;
+	}
+	.caozuo .shang1{
+		top:0;
+		left:125px;
+	}
+	.caozuo .xia1{
+		top:77px;
+		left:125px;
+	}
+	.caozuo .zuo1{
+		top:40px;
+		left:62px;
+	}
+	.caozuo .you1{
+		top:40px;
+		left:186px;
+	}
+	.caozuo #ul2{
+
+		border-top:none;
+	}
+	.gongju li{
+	height:30px;
+	width:100px;
+	line-height:30px;
+	margin:10px auto;
+	background:#F6DC02;
+/*	background:#EDF7BC;*/
+	text-align:center;
+	color:#333;
+	font-size:16px;
+	border-radius:10px;
+	cursor:pointer;
+	}
+	.gongju input{
+		margin-left:18px;
+	margin-top:221px;
+	height:25px;
+	border:none;
+	border:1px solid #DEB9FC;
+	background:#EDF7BC;
+	}
+	.block{
+		width:29px;
+		height:29px;
+		float:left;
+		background:url(./image/caopin1g.png);
+		margin:0 1px  1px 0;
+	}
+	.sheyang{
+		width:30px;
+		height:30px;
+		 background:url(./image/aab.png) 107px 48px;
+	}
+	.zhuanwan{
+		background:url(./image/offer-bag.png);
+	}
+	.shehead{
+		background:url(./image/naidai.png) 0px -8px;
+		transform:scaleZ(90deg) ;
+	}
+	.shefllow{
+		background:url(./image/weiba.png) -8px -10px;
+	}
+	.shiwu{
+		width:30px;
+		height:30px;
+		background:url(./image/we21.png);
+	}
+	
+	.zhuanxia{
+		transform:rotate(90deg);
+	}
+	.xiaa{
+		transform:rotate(90deg);
+	}
+	.leftzuo{
+		transform:rotate(180deg);
+	}
+	.shangtop{
+		transform:rotate(-90deg);
+	}
+	.youright{
+		transform:rotate(0deg);
+	}
+	.gongju .active{
+		background:#F7B2F0;
+	}
+	.tips{
+		width:800px;
+		height:800px;
+		background:url(./image/aa.png) no-repeat;
+		margin: 180px auto;
+		position:relative;
+		top:0;
+		bottom: 0;
+		left:200px;
+		z-index:99999;
+		 display:none;
+	}
+	.tipp{
+		animation:dong 2s ease;
+	}
+	@keyframes dong{
+		0%{
+			transform:translateX(-500px);
+		}
+		100%{
+			transform:translateX(0);
+		}
+	}
+	.kuai{
+		width:240px;
+		height:44px;
+		position: absolute;
+		left:237px;
+		top:88px;
+	}
+	.kuai1{
+		width:240px;
+		height:44px;
+		position: absolute;
+		left:237px;
+		top:148px;	
+	}
+	.kuai2{
+		width:240px;
+		height:44px;
+		position: absolute;
+		left:237px;
+		top:232px;
+	}
+	.tishi2{
+		width:700px;
+		height:700px;
+		background:url(./image/提示2.png) no-repeat;
+		background-size:80% 80%;
+		margin: 180px auto;
+		position:relative;
+		top:-1200px;
+		bottom: 0;
+		left:100px;
+		z-index:99999;
+		 display:none;
+	}
+	.tishiyou{
+		animation:dong2 1s ease;
+	}
+	@keyframes dong2{
+		0%{
+			transform:translateY(-800px);
+		}
+		100%{
+			transform:translateX(0);
+		}
+	}
+	.truea{
+		width:106px;
+		height:50px;
+		position:absolute;
+		left:244px;
+		top:406px;
+	}
+	</style>
+</head>
+<body>
+<div class="main">
+<ul class="strr">
+	<li class="str"></li>
+	<li class="str3"></li>
+	<li class="str4"></li>
+	<li class="str5"></li>
+</ul>
+<div class="jindutiao">
+	<div class="jindutiao2"></div>
+</div>
+</div>
+<div class="content">
+<div class="gongju">
+	<ul >
+	<li >选画布大小</li>
+	<li data-role="15">15*15</li>
+	<li data-role="20" class="active">20*20</li>
+	<li data-role="30">30*30</li>
+	<input type="text" placeholder='请选择5到40之间的数' />
+</ul>
+<ul id="ul2">
+	<li class="kaishi">开始</li>
+	<li class="zanting">暂停</li>
+	<li class="result">重新开始</li>
+</ul>
+</div>
+
+<div class="tips">
+	<div class="kuai"></div>
+	<div class="kuai1"></div>
+	<div class="kuai2"></div>
+</div>
+<div class="tishi2">
+	<div class="truea"></div>
+</div>
+<div class="zhezhao"></div>
+<div id="sence"></div>
+
+</div>
+	<script src="./js/jquery-1.12.0.js"></script>
+	<script>
+		$(function(){
+			//全局变量
+			var sence=$('#sence'),
+			she=[{x:0,y:0},{x:0,y:1},{x:0,y:2},{x:0,y:3}],
+			 shiwu=null,
+			 hang=20,
+			 xintou,
+			  timerId,
+			 fangxiang,
+			 shiwuu=[{},{},{}],
+			 zidianshe={'0-0':true,'0-1':true,'0-2':true},
+			 fx='youright';
+
+
+			//公用函数
+			var zb2id=function(x,y){
+		return	x+'-'+y
+		}
+		var startgame=function(){
+				timerId=setInterval(move,250)
+			}
+			var zantingame=function(){
+				clearInterval(timerId)
+			}
+		var hangshu=function(){
+			var	 i =0,j=0,wh=Math.floor(600/hang);
+			sence.empty();
+			for(;i<hang;i++){
+				for(j=0;j<hang;j++){
+					$('<div>')
+					.addClass('block')
+					.attr('id',zb2id(i,j))
+					.appendTo(sence).width(wh-1).height(wh-1)
+
+				}
+			}
+		}
+        hangshu();
+        //首届面
+        $('.str5').on('click',function(){
+       		$('.jindutiao').css('display','block');
+       		$('.jindutiao2').animate({width:'443px'},400);
+       		$('.main').animate({'left':'100px','opacity':'0'},2000);
+        	$('.content').animate({'opacity':1},2000);
+        })
+        /*默认的蛇头蛇尾*/
+        $('#0-3').addClass('shehead');
+        $('#0-0').addClass('shefllow');
+        //画食物
+		var	 fangshiwu=function(){
+			 	_x=Math.floor(Math.random()*hang)
+			 	_y=Math.floor(Math.random()*hang)
+			 	$('#'+zb2id(_x,_y)).addClass('shiwu')
+			 	return {x:_x,y:_y}
+			 }
+			 shiwu=fangshiwu()
+			fangxiang=39;
+			//主题逻辑
+				var tiosf=function(){
+				$('.tips').css('display','none');
+			}
+			var tiosfs=function(){
+				$('.tips').css('display','block');
+				/*加头*/
+			var jiasehtou=function(){
+				
+
+			}	
+
+			}
+			var zhuanwan=function(e){
+				$('#'+zb2id(xintou.x,xintou.y)).addClass(e)
+			}
+			/*var zhuan=function(el){
+			$('#'+zb2id(jiutou.x,jiutou.y).addClass(el))
+			}*/
+			var move=function(){
+				var jiutou =she[she.length-1];
+				$('#'+zb2id(jiutou.x,jiutou.y)).removeClass('shehead');
+
+				if(fangxiang==37){
+					xintou={x:jiutou.x,y:jiutou.y-1};
+					zhuanwan('leftzuo');
+					zhuanwan('zhuanwan');
+
+				}else if(fangxiang===38){
+					xintou={x:jiutou.x-1,y:jiutou.y};
+					zhuanwan('shangtop');
+					
+					
+				}
+				else if(fangxiang===39){
+					xintou={x:jiutou.x,y:jiutou.y+1};
+					zhuanwan('youright');
+				}
+				else if(fangxiang===40){
+					xintou={x:jiutou.x+1,y:jiutou.y};
+					zhuanwan('xiaa');
+				}
+				if(zidianshe[xintou.x+'-'+xintou.y]){
+				clearInterval(timerId)
+		}		
+				// 	var caozuo=$('.caozuo');
+				// caozuo.on('click', 'li', function(v){
+					if($(this).hasClass('zuo1')){
+					xintou={x:jiutou.x,y:jiutou.y-1};
+					zhuanwan();
+				}else if($(this).hasClass('xia1')){
+					xintou={x:jiutou.x-1,y:jiutou.y}
+					zhuanwan();
+				}
+				else if($(this).hasClass('you1')){
+					xintou={x:jiutou.x,y:jiutou.y+1}
+					zhuanwan();
+				}
+				else if($(this).hasClass('shang1')){
+					xintou={x:jiutou.x+1,y:jiutou.y}
+					zhuanwan();
+				}
+			/*撞墙或自己*/
+				if(xintou.x<0||xintou.y>hang-1||xintou.x>hang-1||xintou.y<0||zidianshe[xintou.x+'-'+xintou.y]){
+					zantingame();
+					$('.zhezhao').css('display','block')
+					$('.tips').addClass('tipp');
+					tiosfs();
+
+				}
+			if(xintou.x===shiwu.x&&xintou.y===shiwu.y){
+				$('#'+zb2id(xintou.x,xintou.y)).addClass('sheyang')
+				she.push(xintou);
+				zidianshe[xintou.x+'_'+xintou.y]=true;
+				$('#'+zb2id(xintou.x,xintou.y)).addClass('sheitou')
+				.removeClass('shiwu')
+				 shiwu=fangshiwu()
+			}else{
+				she.push(xintou);
+				zidianshe[xintou.x+'_'+xintou.y]=true;
+				$('#'+zb2id(xintou.x,xintou.y)).addClass('shehead sheyang');
+				var weiba=she.shift();
+			var weibaa=she[0];
+				delete zidianshe[weiba.x+'-'+weiba.y];
+				$('#'+zb2id(weiba.x,weiba.y)).removeClass().addClass('block');
+				$('#'+zb2id(weibaa.x,weibaa.y)).addClass('shefllow sheyang');
+			}
+			}
+			/*添加新蛇头*/
+			/*zidianshe[xintou.x+'_'+xintou.y]=true;*/
+			/*去旧蛇头*/
+
+			/*;*/
+		/*加新尾巴*/	
+				
+			//画蛇
+			she.forEach(function(v){
+				$('#'+zb2id(v.x,v.y)).addClass('sheyang')
+			})
+			
+		
+			//事件和他的一些操作
+			//按键
+			
+			$('.kuai').on('click',function(){
+				$('.zhezhao').css('display','none')
+				tiosf();
+				fangxiang=39;
+				she=[{x:0,y:0},{x:0,y:1},{x:0,y:2},{x:0,y:3}]
+				
+					zantingame();
+					startgame();
+				 hangshu()
+				she.forEach(function(v){
+				$('#'+zb2id(v.x,v.y)).addClass('sheyang')
+			})
+					shiwu=fangshiwu();
+
+			})
+			$('.truea').on('click',function(){
+				$('.tishi2').css('display','none')
+					tiosfs();
+			})
+			$('.kaishi').bind('click',zantingame,startgame)
+			$('.zanting').bind('click',zantingame);
+			$('.kuai1').on('click',function(){
+				tiosfs();
+				$('.tishi2').css('display','block');
+				$('.tishi2').addClass('tishiyou');
+			})
+			/*$('.result').bind('click',function(){
+				zantingame()
+				 hangshu()
+				 she=[{x:0,y:0},{x:0,y:1},{x:0,y:2}]
+				she.forEach(function(v){
+				$('#'+zb2id(v.x,v.y)).addClass('sheyang')
+			})
+					shiwu=fangshiwu();
+
+			})*/
+		$(document).bind('keydown',function(e){
+			if(e.keyCode<37||e.keyCode>40){
+				return;
+			}else{
+				console.log(e.keyCode)
+				fangxiang=e.keyCode;
+			}
+		})
+			//点击选择列行
+			$('input').bind('keydown',function(e){
+				if(e.keyCode!==13){
+					return
+				}else{
+					$('.active').removeClass('active');
+					hang =$(this).val();
+					hangshu();
+					she.forEach(function(v){
+				$('#'+zb2id(v.x,v.y)).addClass('sheyang')
+			})
+					shiwu=fangshiwu();
+					$('li[data-role='+hang+']').addClass('active')	
+				}
+			})
+
+			//自定义行列
+			$('ul li[data-role]').bind('click',function(){
+				$('.active').removeClass('active')
+				hang=$(this).attr('data-role');
+				hangshu(hang)
+				she.forEach(function(v){
+				$('#'+zb2id(v.x,v.y)).addClass('sheyang')
+			})
+					shiwu=fangshiwu();
+				$(this).addClass('active')	
+			})
+
+})
+	</script>
+</body>
+</html>
